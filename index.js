@@ -7,4 +7,11 @@ app.use(bodyparser.json())
 const cors = require('cors')
 app.use(cors())
 
-const route = require('')
+const route = require('./Route/route')
+app.use('/',route)
+
+const PORT = 4000;
+app.listen(PORT,()=>{
+    console.log(`port connected on server ${PORT}`);
+})
+
