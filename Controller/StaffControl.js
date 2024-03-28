@@ -18,6 +18,7 @@ const AddStaff = (req,res) =>{
             status:200
         })
     })
+  
     .catch((err)=>{
         res.json({
             msg:"data not saved",
@@ -34,6 +35,8 @@ const viewOne = async(req,res) =>{
     if(data){
       if(data.password==password){
         res.json({
+          data:data,
+          msg:"login success",
           status:200
         })
       }
@@ -47,4 +50,81 @@ const viewOne = async(req,res) =>{
     
   }
 
-module.exports={AddStaff,viewOne}
+const findall = (req,res) =>{
+
+  staffSchema.find()
+  .then((data) => {
+    res.json({
+      msg: "data find success",
+      datas: data,
+    });
+  })
+  .catch((err) => {
+    res.json({
+      msg: "data not find",
+      error: err,
+    });
+  });
+}
+
+const findid=(req,res)=>{
+  const id=req.params.id
+  staffSchema.findById(id)
+
+  .then((data)=>{
+      res.json({
+          msg:"Data viewed",
+          data:data
+      })
+  })
+  .catch((err)=>{
+      res.json({
+          msg:"Data not viewed",
+          err:err
+      })
+  })
+}
+
+
+
+const ProfileEdit = (req,res) =>{
+  const id = req.params.id
+  const {name,email,contact} = req.body
+  staffSchema.findByIdAndUpdate(id,{name,email,contact})
+
+
+  .then((data)=>{
+      res.json({
+          msg:"Data viewed",
+          data:data
+      })
+  })
+  .catch((err)=>{
+      res.json({
+          msg:"Data not viewed",
+          err:err
+      })
+  })
+}
+
+const findOne = (req,res) =>{
+  const id=req.params.id
+  // console.log(req.body.name);
+  // console.log(req.body.email);
+  // console.log(req.body.contact);
+  staffSchema.findById(id)
+  .then((data) => {
+    res.json({
+      msg: "data find success",
+      datas: data,
+    });
+  })
+  .catch((err) => {
+    res.json({
+      msg: "data not find",
+      error: err,
+    });
+  });
+}
+
+module.exports={AddStaff,viewOne,findall,findid,ProfileEdit,findOne}
