@@ -45,7 +45,6 @@ else{
     res.json("Email does not exist")
 }
 }
-
 const allview=(req,res)=>
 {
     StudentSchema.find()
