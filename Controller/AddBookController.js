@@ -11,6 +11,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage }).single("image")
+
 const AddBook = (req,res) =>{
     const book = new addbookSchema({
         title:req.body.title,
@@ -37,4 +38,74 @@ const AddBook = (req,res) =>{
     
 }
 
-module.exports={AddBook,upload}
+const viewBook = (req,res) =>{
+  addbookSchema.find()
+  .then((data)=>{
+      res.json({
+          msg:"book is obtained",
+          data:data
+      })
+  })
+  .catch((err)=>{
+      res.json({
+          msg:"book not obtained",
+          err:err
+      })
+  })
+}
+
+const deleteBook=(req,res)=>{
+    const id=req.params.id
+    addbookSchema.findByIdAndDelete(id)
+    .then((data)=>{
+        res.json({
+            msg:"Book deleted",
+            data:data
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            msg:"Book not deleted",
+            err:err
+        })
+    })
+  }
+
+  const EditBook = (req,res) =>{
+    const id = req.params.id
+    const {title,author,isbn,description,image} = req.body
+    addbookSchema.findByIdAndUpdate(id,{title,author,description,isbn,image})
+    .then((data)=>{
+        res.json({
+            msg:"Book Edited",
+            data:data
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            msg:"Book not Edited",
+            err:err
+        })
+    })
+  }
+
+  const viewOne = (req,res) =>{
+    const id = req.params.id
+
+    addbookSchema.findById(id)
+    
+    .then((data)=>{
+        res.json({
+            msg:"data find success",
+            data:data
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            msg:'data not find',
+            error:err
+        })
+    })
+  }
+
+module.exports={AddBook,upload,viewBook,deleteBook,EditBook,viewOne}

@@ -109,9 +109,7 @@ const ProfileEdit = (req,res) =>{
 
 const findOne = (req,res) =>{
   const id=req.params.id
-  // console.log(req.body.name);
-  // console.log(req.body.email);
-  // console.log(req.body.contact);
+ 
   staffSchema.findById(id)
   .then((data) => {
     res.json({
@@ -127,4 +125,6 @@ const findOne = (req,res) =>{
   });
 }
 
-module.exports={AddStaff,viewOne,findall,findid,ProfileEdit,findOne}
+
+
+module.exports={AddStaff,viewOne,findall,findid,ProfileEdit,findOne,}
