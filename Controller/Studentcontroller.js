@@ -39,11 +39,13 @@ if(data){
         });
     }
     else{
-        res.json("password is incorrect")
+        res.json({status:500,
+            msg:"password is incorrect"})
     }
 }
 else{
-    res.json("Email does not exist")
+    res.json({status:500,
+        msg:"Email does not exist"})
 }
 }
 
@@ -81,5 +83,44 @@ const allview=(req,res)=>
         })
     }
 
+    const findname=(req,res)=>{
+        const id=req.params.id
+        StudentSchema.findById(id)
+        .then((data)=>{
+            res.json({
+                msg:"Data viewed",
+                data:data
+            })
+        })
+        .catch((err)=>{
+            res.json({
+                msg:"Data not viewed",
+                err:err
+            })
+        })
+    }
 
-module.exports={StudentRegister,Studentlogin,deletedata,allview}
+    
+    
+    const updatestudent = (req, res) => {
+        const id=req.params.id;
+        const {firstname,lastname,email,phonenumber}=req.body;
+        
+        StudentSchema.findByIdAndUpdate(id,{firstname,lastname,email,phonenumber})
+      
+          .then((data) => {
+            res.json({
+              mge: "data updated",
+              data: data,
+            });
+          })
+          .catch((err) => {
+            res.json({
+              msg: "data not updated",
+              err: err,
+            });
+          });
+      };
+
+
+module.exports={StudentRegister,Studentlogin,deletedata,allview,findname,updatestudent}

@@ -8,4 +8,4 @@ const scheema=new mongoose.Schema({
     password: String,
 })
 
-module.exports= mongoose.model('Student Registration',scheema)
+module.exports= mongoose.model('Students',scheema)
