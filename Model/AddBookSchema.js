@@ -10,4 +10,4 @@ const addBook = new mongoose.Schema({
     
 })
 
-module.exports=mongoose.model("Add Book",addBook)
+module.exports=mongoose.model("Books",addBook)
