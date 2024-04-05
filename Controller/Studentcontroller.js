@@ -34,7 +34,8 @@ if(data){
     if(data.password==password){
         res.json({
             status:200,
-            msg:"login sucess"
+            msg:"login sucess",
+            data:data
         });
     }
     else{
