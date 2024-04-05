@@ -38,4 +38,40 @@ const AddBook = (req,res) =>{
     
 }
 
-module.exports={AddBook,upload}
+const viewbook=(req,res)=>
+{
+  addbookSchema.find()
+    .then((data)=>{
+        res.json({
+            msg:"data is obtained",
+            data:data
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            msg:"Data not obtained",
+            err:err
+        })
+    })
+}
+
+const bookdetails=(req,res)=>{
+    const id=req.params.id
+    addbookSchema.findById(id)
+    .then((data)=>{
+        res.json({
+            msg:"data viewed",
+            data:data
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            msg:"data not viewed",
+            err:err
+        })
+        
+    })
+}
+
+
+module.exports={AddBook,upload,viewbook,bookdetails}

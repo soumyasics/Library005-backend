@@ -8,7 +8,7 @@ const borrbook=require('../Controller/BorrowlistController');
 const wishbook=require('../Controller/WishlistController')
 const studfeedback=require('../Controller/StudentfeedController')
 
-//Staff
+
 route.post('/addstaff',staffController.AddStaff)
 route.post('/find',staffController.viewOne)
 route.get('/finddetails',staffController.findall);
@@ -27,6 +27,9 @@ route.post('/updateone/:id',student.updatestudent)
 
 
 route.post('/addbook',addBook.upload,addBook.AddBook)
+route.get('/viewbook',addBook.viewbook)
+route.get('/Bookdetails/:id',addBook.bookdetails)
+
 
 
 //faculty
