@@ -17,3 +17,5 @@ app.listen(PORT,()=>{
     console.log(`port connected on server ${PORT}`);
 })
 
+app.use(express.static(`${__dirname}/upload`))
+

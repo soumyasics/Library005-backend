@@ -17,7 +17,7 @@ route.post('/editprofile/:id',staffController.ProfileEdit);
 route.get('/viewone/:id',staffController.findOne);
 
 
-
+//student
 route.post('/Sregister',student.StudentRegister);
 route.post('/Slogin',student.Studentlogin);
 route.get('/all',student.allview);
@@ -32,6 +32,7 @@ route.get('/Bookdetails/:id',addBook.bookdetails)
 
 
 
+//faculty
 route.post('/fadd',faculty.addFaculty);
 
 

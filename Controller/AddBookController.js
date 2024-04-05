@@ -11,6 +11,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage }).single("image")
+
 const AddBook = (req,res) =>{
     const book = new addbookSchema({
         title:req.body.title,
