@@ -10,6 +10,8 @@ app.use(cors())
 const route = require('./Route/route')
 app.use('/',route)
 
+app.use(express.static(`${__dirname}/upload`))
+
 const PORT = 4000;
 app.listen(PORT,()=>{
     console.log(`port connected on server ${PORT}`);
