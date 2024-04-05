@@ -107,5 +107,23 @@ const deleteBook=(req,res)=>{
         })
     })
   }
-
-module.exports={AddBook,upload,viewBook,deleteBook,EditBook,viewOne}
+ 
+  const saveeditbook = (req,res)=>{
+    const id=req.params.id
+    // console.log("file",req.file);
+    const {title,author,isbn,description}  = req.body;
+    addbookSchema.findByIdAndUpdate(id,{title,author,isbn,description,image:req.file})
+    .then((data)=>{
+      res.json({
+        msg:"book updated",
+        data:data,
+      })
+    })
+    .catch((err)=>{
+      res.json({
+        msg:"book not updated",
+        error:err
+      })
+    })
+}
+module.exports={AddBook,upload,viewBook,deleteBook,EditBook,viewOne,saveeditbook}

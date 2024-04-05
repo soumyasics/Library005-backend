@@ -25,7 +25,8 @@ route.post('/addbook',addBook.upload,addBook.AddBook);
 route.get('/allbooks',addBook.viewBook);
 route.post('/bookdelete/:id',addBook.deleteBook);
 route.post('/bookedit/:id',addBook.EditBook);
-route.get('/viewdatas/:id',addBook.viewOne);
+route.get('/viewdatas/:id',addBook.upload,addBook.viewOne);
+route.post('/savebook/:id',addBook.upload,addBook.saveeditbook);
 
 
 //faculty
