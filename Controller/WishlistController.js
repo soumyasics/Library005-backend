@@ -23,6 +23,8 @@ const wishbook = (req,res) =>{
         })
     }
 
+    
+
     const bookcard=(req,res)=>{
         wishbookSchema.find()
         .then((data)=>{

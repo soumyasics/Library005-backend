@@ -29,6 +29,11 @@ route.post('/updateone/:id',student.updatestudent)
 route.post('/addbook',addBook.upload,addBook.AddBook)
 route.get('/viewbook',addBook.viewbook)
 route.get('/Bookdetails/:id',addBook.bookdetails)
+route.post('/savebook/:id',addBook.upload,addBook.saveeditbook)
+
+route.post('/Studfeedback',studfeedback.StudentfeedRegister)
+route.get('/showfeedback',studfeedback.allfeedbacks)
+
 
 
 
@@ -37,9 +42,11 @@ route.post('/fadd',faculty.addFaculty);
 
 
 route.post('/borbook',borrbook.bookborrow);
+route.get('/viewborrowbook',borrbook.borrowedList);
+
+
 route.post('/wishbook',wishbook.wishbook);
 route.get('/findwishlist',wishbook.bookcard);
 
-route.post('/Studfeedback',studfeedback.StudentfeedRegister)
 
 module.exports=route
