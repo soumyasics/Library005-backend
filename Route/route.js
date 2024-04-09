@@ -38,6 +38,7 @@ route.post('/fadd',faculty.addFaculty);
 
 route.post('/borbook',borrbook.bookborrow);
 route.post('/wishbook',wishbook.wishbook);
+route.get('/findwishlist',wishbook.bookcard);
 
 route.post('/Studfeedback',studfeedback.StudentfeedRegister)
 

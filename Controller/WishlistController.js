@@ -23,4 +23,20 @@ const wishbook = (req,res) =>{
         })
     }
 
-    module.exports = {wishbook}
+    const bookcard=(req,res)=>{
+        wishbookSchema.find()
+        .then((data)=>{
+            res.json({
+                msg:"wishlist added",
+                data:data
+            })
+        })
+        .catch((err)=>{
+            res.json({
+                msg:"Wishlist not added",
+                err:err
+            })
+        })
+    }
+
+    module.exports = {wishbook,bookcard}
