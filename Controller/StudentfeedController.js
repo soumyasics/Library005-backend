@@ -3,6 +3,7 @@ const StudentfeedRegister=(req,res)=>{
     const stud= new StudentfeedSchema({
     studid:req.body.studid,
     feedback: req.body.feedback,
+    date:req.body.Date
     })
     stud.save()
     .then((data)=>{
@@ -21,4 +22,22 @@ const StudentfeedRegister=(req,res)=>{
     })
 }
 
-module.exports={StudentfeedRegister}
+const allfeedbacks = (req,res) =>{
+
+        StudentfeedSchema.find().populate('studid')
+        .then((data) => {
+          res.json({
+            msg: "feedback find success",
+            datas: data,
+          });
+        })
+        .catch((err) => {
+          res.json({
+            msg: "feedback not find",
+            error: err,
+          });
+        });
+      
+}
+
+module.exports={StudentfeedRegister,allfeedbacks}

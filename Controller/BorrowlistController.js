@@ -24,6 +24,22 @@ const bookborrow = (req,res) =>{
         })
     }
 
+const borrowedList = (req,res) =>{
+  borrbookSchema.find().populate('bookid').populate('studid')
+    .then((data)=>{
+        res.json({
+            msg:"data is obtained",
+            data:data
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            msg:"Data not obtained",
+            err:err
+        })
+    })
+}
 
 
-    module.exports = {bookborrow}
+
+    module.exports = {bookborrow,borrowedList}

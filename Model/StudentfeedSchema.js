@@ -5,7 +5,8 @@ const scheema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Students'
     },
-    feedback:String
+    feedback:String,
+    Date: Date
 })
 
 module.exports= mongoose.model('Studentsfeedback',scheema)
