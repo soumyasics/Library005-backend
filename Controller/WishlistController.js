@@ -23,15 +23,14 @@ const wishbook = (req,res) =>{
         })
     }
 
-    
-
     const bookcard=(req,res)=>{
-        wishbookSchema.find()
+        const id=req.params.id
+        wishbookSchema.find({studid:id}).populate('bookid').exec()
         .then((data)=>{
             res.json({
                 msg:"wishlist added",
                 data:data
-            })
+            }) 
         })
         .catch((err)=>{
             res.json({

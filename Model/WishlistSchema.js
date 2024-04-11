@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const wishlist=new mongoose.Schema({
     bookid:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Book'
+        ref:'Books'
     },
     studid:{
         type:mongoose.Schema.Types.ObjectId,

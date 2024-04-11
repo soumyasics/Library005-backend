@@ -46,7 +46,7 @@ route.get('/viewborrowbook',borrbook.borrowedList);
 
 
 route.post('/wishbook',wishbook.wishbook);
-route.get('/findwishlist',wishbook.bookcard);
+route.post('/findwishlist/:id',wishbook.bookcard);
 
 
 module.exports=route
