@@ -1,7 +1,11 @@
 const borrbookSchema = require('../Model/BorrowlistSchema')
 
 const bookborrow = (req,res) =>{
-    const value = new borrbookSchema ({
+
+    borrbookSchema.find({studid:req.body.studid,bookid:req.body.bookid}).exec().then(data=>{
+        if(data.length<=0){
+
+        const value = new borrbookSchema ({
         bookid: req.body.bookid,
         studid:req.body.studid,
         Date:req.body.Date
@@ -22,7 +26,21 @@ const bookborrow = (req,res) =>{
                 status:500
             })
         })
-    }
+    }else{
+        res.json({
+            msg:"book already borrowed",
+            status:500
+    })}
+
+})
+.catch((err)=>{
+    res.json({
+        msg:"Data not saved",
+        err:err,
+        status:500
+    })
+})
+}
 
 const borrowedList = (req,res) =>{
   borrbookSchema.find({approvalStatus:true}).populate('bookid').populate('studid')
