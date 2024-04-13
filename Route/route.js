@@ -49,6 +49,7 @@ route.post('/deleteborrow/:id',borrbook.deleteBorrowBook);
 
 
 route.post('/wishbook',wishbook.wishbook);
+route.post('/findwishlist/:id',wishbook.bookcard);
 
 
 module.exports=route
