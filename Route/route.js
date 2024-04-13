@@ -43,6 +43,9 @@ route.post('/fadd',faculty.addFaculty);
 
 route.post('/borbook',borrbook.bookborrow);
 route.get('/viewborrowbook',borrbook.borrowedList);
+route.post('/acceptbook/:id',borrbook.borrowUpdate);
+route.get('/notapprove/:id',borrbook.approval);
+route.post('/deleteborrow/:id',borrbook.deleteBorrowBook);
 
 
 route.post('/wishbook',wishbook.wishbook);
