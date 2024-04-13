@@ -25,7 +25,7 @@ const bookborrow = (req,res) =>{
     }
 
 const borrowedList = (req,res) =>{
-  borrbookSchema.find().populate('bookid').populate('studid')
+  borrbookSchema.find({approvalStatus:true}).populate('bookid').populate('studid')
     .then((data)=>{
         res.json({
             msg:"data is obtained",
@@ -40,6 +40,56 @@ const borrowedList = (req,res) =>{
     })
 }
 
+const approval = (req,res) =>{
+    borrbookSchema.find({approvalStatus:false}).populate('bookid').populate('studid')
+      .then((data)=>{
+          res.json({
+              msg:"data is obtained",
+              data:data
+          })
+      })
+      .catch((err)=>{
+          res.json({
+              msg:"Data not obtained",
+              err:err
+          })
+      })
+  }
 
+const borrowUpdate = (req,res) =>{
+    const id = req.params.id
+    borrbookSchema.findByIdAndUpdate(id,{approvalStatus:true})
+    .then((data)=>{
+        res.json({
+            msg:"book approved",
+            data:data,
+            status:200
+        })
+    })
+    .catch((error)=>{
+        res.json({
+            msg:"book not approved",
+            error:error,
+            status:500
+        })
+    })
+}
 
-    module.exports = {bookborrow,borrowedList}
+const deleteBorrowBook=(req,res)=>{
+    const id=req.params.id
+        borrbookSchema.findByIdAndDelete(id)
+        .then((data)=>{
+            res.json({
+                msg:"borrow deleted",
+                data:data
+            })
+        })
+        .catch((err)=>{
+            res.json({
+                msg:"borrow not deleted",
+                err:err
+            })
+        })
+}
+
+    module.exports = {bookborrow,borrowedList,borrowUpdate,approval,deleteBorrowBook}
